@@ -1,0 +1,28 @@
+
+{
+  "dataset_type": "fictional_demo_data",
+  "notice": "All profiles are fictional and for testing only.",
+  "profiles": [
+    {
+      "profile_id": "demo_001",
+      "display_name": "GlowLeaf Naturals",
+      "username": "glowleaf_naturals",
+      "is_registered_official": true,
+      "logo_path": "sample_logos/official_logo.png"
+    },
+    {
+      "profile_id": "demo_002",
+      "display_name": "GlowLeef Naturals",
+      "username": "glowleef_naturals",
+      "is_registered_official": false,
+      "logo_path": "sample_logos/candidate_logo.png"
+    },
+    {
+      "profile_id": "demo_003",
+      "display_name": "Lovely Beauty Store",
+      "username": "lovely_beauty_store",
+      "is_registered_official": false,
+      "logo_path": null
+    }
+  ]
+}

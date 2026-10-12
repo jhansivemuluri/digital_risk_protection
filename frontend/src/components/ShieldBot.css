@@ -1,0 +1,492 @@
+
+.shieldbot-root {
+  --sb-red: #ff3044;
+  --sb-red-hover: #e91e32;
+  --sb-bg: #0b0b0e;
+  --sb-panel: #121216;
+  --sb-border: rgba(255, 255, 255, 0.1);
+  --sb-muted: #a1a1aa;
+  --sb-text: #f5f5f7;
+
+  position: fixed;
+  right: 26px;
+  bottom: 24px;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+.shieldbot-root *,
+.shieldbot-root *::before,
+.shieldbot-root *::after {
+  box-sizing: border-box;
+}
+
+.shieldbot-window {
+  position: absolute;
+  right: 0;
+  bottom: 78px;
+  width: min(390px, calc(100vw - 32px));
+  height: min(590px, calc(100dvh - 120px));
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--sb-text);
+  background: var(--sb-bg);
+  border: 1px solid rgba(255, 48, 68, 0.32);
+  border-radius: 20px;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(255, 48, 68, 0.08);
+  animation: shieldbot-window-in 0.24s ease-out;
+}
+
+@keyframes shieldbot-window-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.shieldbot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px;
+  background: linear-gradient(135deg, #1b1013, #101014 75%);
+  border-bottom: 1px solid var(--sb-border);
+}
+
+.shieldbot-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.shieldbot-logo {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(145deg, #ff4556, #c71025);
+  border-radius: 13px;
+  box-shadow: 0 5px 18px rgba(255, 48, 68, 0.2);
+}
+
+.shieldbot-heading h2 {
+  margin: 0 0 5px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.shieldbot-heading > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sb-muted);
+  font-size: 11px;
+}
+
+.shieldbot-status-dot {
+  width: 7px;
+  height: 7px;
+  background: #36d399;
+  border-radius: 50%;
+  box-shadow: 0 0 9px rgba(54, 211, 153, 0.4);
+}
+
+.shieldbot-header-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.shieldbot-icon-button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: #b7b7c0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.shieldbot-icon-button:hover:not(:disabled) {
+  color: white;
+  background: #29292f;
+  border-color: var(--sb-border);
+}
+
+.shieldbot-icon-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.shieldbot-security-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  color: #ff929c;
+  background: rgba(255, 48, 68, 0.055);
+  border-bottom: 1px solid rgba(255, 48, 68, 0.12);
+  font-size: 11px;
+}
+
+.shieldbot-messages {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 17px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: #3c2026 transparent;
+}
+
+.shieldbot-messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+.shieldbot-messages::-webkit-scrollbar-thumb {
+  background: #493038;
+  border-radius: 10px;
+}
+
+.shieldbot-message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  animation: shieldbot-message-in 0.2s ease-out;
+}
+
+@keyframes shieldbot-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shieldbot-message-row.is-user {
+  justify-content: flex-end;
+}
+
+.shieldbot-message-avatar {
+  width: 29px;
+  height: 29px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: #ff5969;
+  background: #251216;
+  border: 1px solid rgba(255, 48, 68, 0.2);
+  border-radius: 9px;
+}
+
+.shieldbot-bubble {
+  max-width: 84%;
+  padding: 11px 13px;
+  color: #dedee5;
+  background: #1a1a20;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 14px 14px 14px 4px;
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.shieldbot-message-row.is-user .shieldbot-bubble {
+  color: #fff;
+  background: linear-gradient(135deg, #e92c40, #b8172b);
+  border-color: rgba(255, 90, 105, 0.3);
+  border-radius: 14px 14px 4px 14px;
+}
+
+.shieldbot-suggestions {
+  margin: 2px 0 0 37px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+}
+
+.shieldbot-suggestions p {
+  margin: 0 0 3px;
+  color: var(--sb-muted);
+  font-size: 11px;
+}
+
+.shieldbot-suggestions button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 11px;
+  color: #e5e5eb;
+  background: #141418;
+  border: 1px solid #2b2024;
+  border-radius: 10px;
+  text-align: left;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.shieldbot-suggestions button:hover:not(:disabled) {
+  background: #211417;
+  border-color: #b62a3a;
+  transform: translateX(2px);
+}
+
+.shieldbot-suggestions button span {
+  color: #ff5869;
+}
+
+.shieldbot-suggestions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.shieldbot-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 15px;
+}
+
+.shieldbot-typing span {
+  width: 6px;
+  height: 6px;
+  background: #ff5969;
+  border-radius: 50%;
+  animation: shieldbot-dot 1s infinite ease-in-out;
+}
+
+.shieldbot-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.shieldbot-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes shieldbot-dot {
+  0%, 60%, 100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+.shieldbot-error {
+  margin: 0 12px 8px;
+  padding: 9px 11px;
+  color: #ffb4bc;
+  background: rgba(255, 48, 68, 0.09);
+  border: 1px solid rgba(255, 48, 68, 0.25);
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.shieldbot-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 9px;
+  margin: 0 12px;
+  padding: 9px;
+  background: #17171c;
+  border: 1px solid #303038;
+  border-radius: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.shieldbot-composer:focus-within {
+  border-color: rgba(255, 48, 68, 0.7);
+  box-shadow: 0 0 0 3px rgba(255, 48, 68, 0.07);
+}
+
+.shieldbot-composer textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: 100px;
+  resize: none;
+  padding: 6px 3px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.shieldbot-composer textarea::placeholder {
+  color: #777780;
+}
+
+.shieldbot-composer textarea:disabled {
+  opacity: 0.6;
+}
+
+.shieldbot-send-button {
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(145deg, #ff4556, #df1e33);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
+}
+
+.shieldbot-send-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 48, 68, 0.25);
+}
+
+.shieldbot-send-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.shieldbot-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 8px 12px;
+  color: #777780;
+  font-size: 9px;
+  text-align: center;
+}
+
+.shieldbot-footer svg {
+  color: #ff5969;
+  flex-shrink: 0;
+}
+
+.shieldbot-launcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 58px;
+  height: 58px;
+  padding: 0 17px;
+  color: white;
+  background: linear-gradient(135deg, #ff3b4f, #c9152a);
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 18px;
+  box-shadow: 0 9px 30px rgba(255, 35, 55, 0.3);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, border-radius 0.25s;
+}
+
+.shieldbot-launcher:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 35px rgba(255, 35, 55, 0.4);
+}
+
+.shieldbot-launcher.is-open {
+  min-width: 52px;
+  width: 52px;
+  height: 52px;
+  margin-left: auto;
+  padding: 0;
+  border-radius: 16px;
+}
+
+.shieldbot-launcher-label {
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.shieldbot-launcher-pulse {
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(255, 48, 68, 0.5);
+  border-radius: 22px;
+  animation: shieldbot-pulse 2.2s infinite;
+  pointer-events: none;
+}
+
+@keyframes shieldbot-pulse {
+  0% {
+    opacity: 0.65;
+    transform: scale(0.97);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+
+@media (max-width: 480px) {
+  .shieldbot-root {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .shieldbot-window {
+    position: fixed;
+    right: 8px;
+    bottom: 82px;
+    width: calc(100vw - 16px);
+    height: min(620px, calc(100dvh - 105px));
+    min-height: 320px;
+    border-radius: 17px;
+  }
+
+  .shieldbot-launcher {
+    height: 54px;
+    min-width: 54px;
+    border-radius: 16px;
+  }
+
+  .shieldbot-launcher-label {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shieldbot-root *,
+  .shieldbot-root *::before,
+  .shieldbot-root *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
